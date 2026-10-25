@@ -151,7 +151,7 @@ button:disabled { opacity: .5; cursor: default; }
     bar.style.width = "0"; info.textContent = sets + " セット";
   }
   start.onclick = function () { reset(); setRunning(true); round(1); };
-  retry.onclick = function () { reset(); setRunning(true); round(1); };
+  retry.onclick = function () { reset(); setRunning(false); window.scrollTo(0, 0); chips.querySelector('[aria-pressed="true"]').focus(); };
   stop.onclick = function () { reset(); setRunning(false); };
 })();
 </script>
