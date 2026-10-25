@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>4-4-8呼吸トレーニング</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Dela+Gothic+One&display=swap">
+<style>
+:root {
+  --bg: #F3F6F4; --surface: #FFFFFF; --surface-2: #E6EEE9; --fg: #17211B; --muted: #4E5C54;
+  --line: #CAD8CF; --pitch: #1C5A3E; --pitch-ink: #FFFFFF; --navy: #1D3A5F; --accent: #E8772E; --done: #2E7D57;
+  --font-display: 'Dela Gothic One', 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', sans-serif;
+  --font-body: 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #101713; --surface: #18221C; --surface-2: #213028; --fg: #E8EFEA; --muted: #A6B5AC;
+    --line: #304238; --pitch: #2A7553; --navy: #9EC0E8; --accent: #F08A45; --done: #6CC79A; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+header { background: var(--pitch); color: var(--pitch-ink);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 18px 16px; }
+header div { max-width: 520px; margin: 0 auto; }
+header small { display: block; font-size: 13px; opacity: .85; }
+h1 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 24px; line-height: 1.3; }
+main { max-width: 520px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 16px 40px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+p { margin: 0; }
+.muted { color: var(--muted); font-size: 14px; }
+.label { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--muted); }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.steps div { background: var(--surface-2); border-radius: 10px; padding: 8px 6px; text-align: center; display: flex; flex-direction: column; }
+.steps b { font-family: var(--font-display); font-weight: 400; font-size: 20px; color: var(--pitch); }
+.steps span { font-size: 13px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+button { font: inherit; cursor: pointer; border: none; border-radius: 12px; min-height: 48px; padding: 10px 18px; font-weight: 700; font-size: 16px; }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+button:disabled { opacity: .5; cursor: default; }
+.chip { min-height: 44px; padding: 6px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--fg); font-size: 14px; }
+.chip[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--bg); }
+.primary { background: var(--pitch); color: var(--pitch-ink); }
+.secondary { background: var(--surface-2); color: var(--fg); }
+.row { display: flex; gap: 10px; flex-wrap: wrap; }
+.row > .grow { flex: 1 1 160px; }
+.breath { display: grid; place-items: center; height: 240px; }
+.ring { width: 200px; height: 200px; border-radius: 50%; background: var(--surface-2); border: 4px solid var(--pitch); display: grid; place-items: center; transform: scale(.62); transition: transform 4s ease-in-out; }
+.ring-in { text-align: center; transform: scale(1.61); transition: transform 4s ease-in-out; }
+.word { font-weight: 700; font-size: 18px; }
+.count { font-family: var(--font-display); font-size: 40px; line-height: 1.1; color: var(--pitch); min-height: 44px; font-variant-numeric: tabular-nums; }
+.hint { text-align: center; font-weight: 700; min-height: 1.6em; }
+.info { text-align: center; font-variant-numeric: tabular-nums; }
+.bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .4s; }
+@media (prefers-reduced-motion: reduce) { .ring, .ring-in, .bar i { transition: none !important; } }
+</style>
+</head>
+<body>
+<header><div><small>お腹で呼吸して心を整える</small><h1>4-4-8呼吸トレーニング</h1></div></header>
+<main>
+  <section class="panel">
+    <div class="steps">
+      <div><b>4</b><span>鼻から吸う</span></div>
+      <div><b>4</b><span>息を止める</span></div>
+      <div><b>8</b><span>口から吐く</span></div>
+    </div>
+    <p class="muted">一番大切なのは、最後まで息を吐き切ること。吸ったときにお腹がふくらみ、吐いたときにへこみます。</p>
+
+    <span class="label" id="setsLabel">セット数をえらぶ（1セット16秒）</span>
+    <div class="chips" id="sets" role="group" aria-labelledby="setsLabel">
+      <button class="chip" data-n="4" aria-pressed="true">4セット 約1分</button>
+      <button class="chip" data-n="12" aria-pressed="false">12セット 約3分</button>
+      <button class="chip" data-n="20" aria-pressed="false">20セット 約5分</button>
+    </div>
+
+    <div class="breath">
+      <div class="ring" id="ring"><div class="ring-in" id="ringIn">
+        <div class="word" id="word">準備OK？</div>
+        <div class="count" id="count"></div>
+      </div></div>
+    </div>
+    <p class="hint" id="hint"></p>
+    <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+    <p class="muted info" id="info" aria-live="polite">4 セット</p>
+
+    <div class="row">
+      <button class="primary grow" id="start">スタート</button>
+      <button class="secondary" id="stop" hidden>やめる</button>
+      <button class="primary grow" id="retry" hidden>もう一度やる</button>
+    </div>
+  </section>
+</main>
+<script>
+(function () {
+  "use strict";
+  var sets = 4, timers = [], running = false;
+  var $ = function (id) { return document.getElementById(id); };
+  var ring = $("ring"), ringIn = $("ringIn"), word = $("word"), count = $("count"), hint = $("hint"),
+      info = $("info"), bar = $("bar"), start = $("start"), stop = $("stop"), retry = $("retry"), chips = $("sets");
+
+  try { var saved = parseInt(localStorage.getItem("breath448-sets"), 10); if ([4, 12, 20].indexOf(saved) >= 0) sets = saved; } catch (e) {}
+  function markChips() { Array.prototype.forEach.call(chips.children, function (b) { b.setAttribute("aria-pressed", String(+b.dataset.n === sets)); }); }
+  markChips(); info.textContent = sets + " セット";
+  chips.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b || running) return;
+    sets = +b.dataset.n; markChips(); info.textContent = sets + " セット";
+    try { localStorage.setItem("breath448-sets", String(sets)); } catch (err) {}
+  });
+
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function clearAll() { timers.forEach(clearTimeout); timers = []; }
+  function setScale(s, secs) {
+    ring.style.transitionDuration = secs + "s"; ringIn.style.transitionDuration = secs + "s";
+    ring.style.transform = "scale(" + s + ")"; ringIn.style.transform = "scale(" + (1 / s) + ")";
+  }
+  function phase(label, tip, n, scale, then) {
+    word.textContent = label; hint.textContent = tip; setScale(scale, n);
+    var i = 1;
+    (function tick() { count.textContent = i; if (i >= n) { later(then, 1000); return; } i++; later(tick, 1000); })();
+  }
+  function round(r) {
+    info.textContent = r + " / " + sets + " セット目";
+    bar.style.width = ((r - 1) / sets * 100) + "%";
+    phase("鼻から吸う", "お腹がふくらむ", 4, 1, function () {
+      phase("息を止める", "心と体に「間」をつくる", 4, 1, function () {
+        phase("口から吐く", "ストローで吐くように。お腹がへこむまで吐き切る", 8, 0.62, function () {
+          if (r < sets) round(r + 1); else finish();
+        });
+      });
+    });
+  }
+  function setRunning(on) {
+    running = on;
+    Array.prototype.forEach.call(chips.children, function (b) { b.disabled = on; });
+    start.hidden = on; stop.hidden = !on; retry.hidden = true;
+  }
+  function finish() {
+    setRunning(false);
+    bar.style.width = "100%";
+    word.textContent = "できた！"; count.textContent = "";
+    hint.textContent = "緊張したときや円陣のときにも使ってみよう";
+    info.textContent = sets + " セットできました";
+    start.hidden = true; retry.hidden = false; retry.focus();
+  }
+  function reset() {
+    clearAll(); setScale(0.62, 0.3);
+    word.textContent = "準備OK？"; count.textContent = ""; hint.textContent = "";
+    bar.style.width = "0"; info.textContent = sets + " セット";
+  }
+  start.onclick = function () { reset(); setRunning(true); round(1); };
+  retry.onclick = function () { reset(); setRunning(true); round(1); };
+  stop.onclick = function () { reset(); setRunning(false); };
+})();
+</script>
+</body>
+</html>
